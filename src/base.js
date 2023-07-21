@@ -1,4 +1,5 @@
 import './style.css';
+import { list, title } from './gui/listUI';
 
 export const header = () => {
     const header = document.createElement("header");
@@ -25,3 +26,15 @@ export const sidebar = () => {
 
     return sidebar;
 };
+
+export const main = () => {
+    const main = Object.assign(document.createElement("main"), {
+        id: "main"
+    });
+
+    main.appendChild(title("Today"));
+
+    main.appendChild(list());
+
+    return main;
+}
