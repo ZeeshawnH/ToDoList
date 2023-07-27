@@ -13,7 +13,7 @@ export const listItem = (listItem) => {
 
     const title = Object.assign(document.createElement("span"), {
         className: "item-title",
-        innerText: "Item"
+        innerText: listItem.getTitle()
     });
 
     const info = Object.assign(document.createElement("span"), {
@@ -27,7 +27,7 @@ export const listItem = (listItem) => {
     });
     const date = Object.assign(document.createElement("span"), {
         className: "date",
-        innerText: "07/21/2023"
+        innerText: listItem.getDueDate()
     });
     info.appendChild(edit);
     info.appendChild(deleteButton)
@@ -44,7 +44,9 @@ export const listItem = (listItem) => {
         title.classList.toggle("item-checked");
     });
 
-
+    deleteButton.addEventListener("click", () => {
+        item.parentNode.removeChild(item);
+    })
 
     return item;
 }

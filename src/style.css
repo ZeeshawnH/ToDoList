@@ -75,7 +75,13 @@ header {
     width: 80%;
     background-color: var(--white);
     border-radius: 15px;
-    padding: 1.5%
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+.list * {
+    color: var(--dark-background);
 }
 
 .item {
@@ -83,6 +89,7 @@ header {
     font-size: 1.3em;
     font-weight: 700;
     padding: 1%;
+    margin: 1.5%;
     border-radius: 10px;
 }
 
@@ -128,10 +135,81 @@ header {
     color: grey;
 }
 
+.new {
+    padding: 1% 1% 1% 1%;
+    background-color: var(--dark-grey);
+}
+
+.fa-plus {
+    padding-right: 1%;
+}
+
+.fa-plus:hover {
+    cursor: pointer;
+}
+
+#title-field {
+    border: none;
+    background-color: white;
+    height: 2.5em;
+    width: 50%;
+    border-radius: 8px;
+    padding: 0% 1% 0% 1%;
+    font-size: .8em;
+    font-weight: 800;
+    margin-right: auto;
+}
+
+.new-item-form {
+    padding-top: 1%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 98%;
+    justify-content: flex-end;
+    margin-right: 0%;
+}
+
+.new-item-form > * {
+    border: none;
+    height: 2.5em;
+    border-radius: 8px;
+    margin-bottom: 1%;
+}
+
+#details {
+    font-weight: 600;
+    width: 100%;
+}
+
+#date-input {
+    width: 20%;
+    margin-right: auto;
+}
+
+#submit-button {
+    margin-right: 1%;
+    background-color: #4CAF50;
+    color: var(--white);
+}
+
+#submit-button:hover {
+    cursor: pointer;
+    background-color: var(--white);
+    color: var(--dark-background);
+}
+
 .delete {
     color: rgb(209, 1, 1);
+    height: 1em;
+    margin: 0;
+    padding-top: 1%;
 }
 
 .delete:hover {
     color: rgb(165, 0, 0);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

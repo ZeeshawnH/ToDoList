@@ -1,4 +1,4 @@
-import { Date } from "date-fns";
+import { format } from "date-fns";
 
 /**
  * Contains the information for each to-do item
@@ -49,10 +49,10 @@ export class Item {
      * @returns the date in MM/DD/YYYY format from the due date value
      */
     getDueDate() {
-        day = getDate(this.dueDate);
-        month = getMonth(this.dueDate);
-        year = getYear(this.dueDate);
-        return `${month}/${day}/${year}`;
+        // day = getDate(this.dueDate);
+        // month = getMonth(this.dueDate);
+        // year = getYear(this.dueDate);
+        return `${format(this.dueDate, 'MM/dd/yyyy')}`;
     }
 
     /**
