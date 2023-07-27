@@ -2,6 +2,11 @@ import { listItem } from "./itemUI";
 import { Item } from "../Project/item";
 import { format, parse } from "date-fns";
 
+/**
+ * Creates the ul element displaying the list of tasks to complete
+ * Adds the element representing the new item button to the list
+ * @returns html ul element representing the list of tasks
+ */
 export const list = () => {
     const list = Object.assign(document.createElement("ul"), {
         className: "list"
@@ -23,6 +28,11 @@ export const title = (text) => {
     return title;
 }
 
+/**
+ * List item used to add new items to the list
+ * Clicking on it opens a form to add the new items
+ * @returns the div element allowing the user to add a new task to the list
+ */
 const newItem = () => {
 
     const newItem = Object.assign(document.createElement("div"), {
@@ -48,6 +58,10 @@ const newItem = () => {
     return newItem;
 };
 
+/**
+ * Creates a span containing a plus sign and the text for the new item button
+ * @returns the span containing the text for the new item button
+ */
 const addItem = () => {
     const container = document.createElement("span");
 
@@ -66,6 +80,11 @@ const addItem = () => {
     return container;
 }
 
+/**
+ * Form for creating a new item
+ * Submit adds the new item to the list of items stored in local storage
+ * @returns the form for creating a new item
+ */
 const form = () => {
     const form = Object.assign(document.createElement("form"), {
         className: "new-item-form",
