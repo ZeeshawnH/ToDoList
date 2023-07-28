@@ -1,5 +1,6 @@
 import './style.css';
 import { list, title } from './gui/listUI';
+import { listProject, projectList, today } from './gui/projectListUI';
 
 export const header = () => {
     const header = document.createElement("header");
@@ -17,12 +18,14 @@ export const header = () => {
     return header;
 };
 
-export const sidebar = () => {
+export const sidebar = (ToDo, main) => {
     const sidebar = Object.assign(document.createElement("nav"), {
         id: "sidebar"
     });
 
+    sidebar.appendChild(today());
 
+    sidebar.appendChild(projectList(ToDo));
 
     return sidebar;
 };

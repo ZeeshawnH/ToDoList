@@ -1,17 +1,22 @@
 import { Project } from "./project";
 
-export const ToDo = (() => {
-    /** List of projects */
-    const projects = [];
-
-    projects.push(new Project("Today"));
+export class ToDo {
+    
+    /**
+     * Initializes the list of projects and adds the "Today" project
+     */
+    constructor() {
+        this.projects = [];
+        this.projects.push(new Project("Today"));
+        this.projects.push(new Project("To-Do List"));
+    }
 
     /**
      * Adds project to list of projects
      * @param {String} projectName 
      */
-    const addProject = (projectName) => {
-        projects.push(new Project(projectName));
+    addProject(projectName) {
+        this.projects.push(new Project(projectName));
     }
 
     /**
@@ -19,7 +24,12 @@ export const ToDo = (() => {
      * @param {Project} projectName the name of the project to be found
      * @returns the Project instance with the corresponding name
      */
-    const findProject = (projectName) => {
-        return projects.find((project) => project.getName() === projectName);
+    findProject(projectName) {
+        return this.projects.find((project) => project.getName() === projectName);
     }
-})();
+
+    getProjects() {
+        return this.projects;
+    }
+
+};

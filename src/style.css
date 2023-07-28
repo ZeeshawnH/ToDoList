@@ -6,7 +6,7 @@
 }
 
 :root {
-    --background: #262626;
+    --background: #2e2e2e;
     --dark-background: #202020;
     --secondary-color: #385170;
     --blue: #9fd3c7;
@@ -58,6 +58,40 @@ header {
     height: 100%;
     width: 300px;
     background-color: #202020;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 3%;
+}
+
+.project {
+    width: 100%;
+    height: fit-content;
+    text-align: left;
+    display: flex;
+    padding: 3%;
+    border-radius: 10px;
+}
+
+.project:hover {
+    background-color: var(--background);
+    cursor: pointer;
+}
+
+.project * {
+    font-size: 1.2em;
+    margin: 0;
+    padding: 3%;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-title {
+    font-size: 1.5em;
+    margin-bottom: 2%;
 }
 
 #main {
