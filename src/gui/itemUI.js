@@ -3,6 +3,8 @@ import {format} from "date-fns/format";
 
 export const listItem = (listItem) => {
 
+    const li = document.createElement("li");
+
     const item = Object.assign(document.createElement("div"), {
         className: "item"
     });
@@ -47,6 +49,7 @@ export const listItem = (listItem) => {
     deleteButton.addEventListener("click", () => {
         item.parentNode.removeChild(item);
     })
-
-    return item;
+    
+    li.appendChild(item);
+    return li;
 }

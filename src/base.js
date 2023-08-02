@@ -1,6 +1,7 @@
 import './style.css';
 import { list, title } from './gui/listUI';
 import { listProject, projectList, today } from './gui/projectListUI';
+import { Project } from './Project/project';
 
 export const header = () => {
     const header = document.createElement("header");
@@ -25,7 +26,7 @@ export const sidebar = (ToDo, main) => {
 
     sidebar.appendChild(today());
 
-    sidebar.appendChild(projectList(ToDo));
+    sidebar.appendChild(projectList(ToDo, main));
 
     return sidebar;
 };
@@ -37,7 +38,7 @@ export const main = () => {
 
     main.appendChild(title("Today"));
 
-    main.appendChild(list());
+    main.appendChild(list(new Project("Today")));
 
     return main;
 }

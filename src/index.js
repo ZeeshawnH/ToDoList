@@ -8,8 +8,11 @@ const content = Object.assign(document.createElement("div"), {
 });
 
 document.body.appendChild(header());
-content.appendChild(sidebar(manager));
 
-content.appendChild(main());
+const mainContent = main();
+
+content.appendChild(sidebar(manager, mainContent));
+
+content.appendChild(mainContent);
 
 document.body.appendChild(content);

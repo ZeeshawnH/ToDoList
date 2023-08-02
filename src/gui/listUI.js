@@ -7,14 +7,18 @@ import { format, parse } from "date-fns";
  * Adds the element representing the new item button to the list
  * @returns html ul element representing the list of tasks
  */
-export const list = () => {
+export const list = (project) => {
     const list = Object.assign(document.createElement("ul"), {
         className: "list"
     });
 
-    list.appendChild(document.createElement("li").appendChild(listItem(new Item("Parent", "", new Date(2023, 2, 21), 2))));
+    list.appendChild(listItem(new Item("Parent", "", new Date(2023, 2, 21), 2)));
 
     list.appendChild(newItem());
+
+    for (let i = 0; i < project.getItems(); i++) {
+        list.appendChild(listItem(project.getItems()[i]));
+    }
 
     return list;
 }
@@ -49,7 +53,7 @@ const newItem = () => {
     newItem.appendChild(itemForm);
 
     // Event listener
-    container.addEventListener("click", () => {
+    newItem.addEventListener("click", () => {
         newItem.classList.toggle("new");
         container.classList.toggle("hidden");
         itemForm.classList.toggle("hidden");
@@ -134,7 +138,7 @@ const form = () => {
         const addItem = form.parentNode;
 
         list.removeChild(addItem);
-        list.appendChild(addItem());
+        list.appendChild(addItem);
     });
     form.appendChild(deleteButton);
 

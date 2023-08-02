@@ -1,6 +1,7 @@
 import { Project } from "../Project/project";
+import { list } from "./listUI";
 
-export const listProject = (project) => {
+export const listProject = (project, main) => {
     const element = Object.assign(document.createElement("div"), {
         className: "project"
     });
@@ -13,10 +14,16 @@ export const listProject = (project) => {
         className: "list-project-title"
     }));
 
+    element.addEventListener("click", () => {
+        main.childNodes[0].innerText = project.getName();
+        main.removeChild(main.childNodes[1]);
+        main.appendChild(list(project));
+    });
+
     return element;
 }
 
-export const projectList = (ToDo) => {
+export const projectList = (ToDo, main) => {
     const list = Object.assign(document.createElement("div"), {
         className: "project-list"
     });
@@ -29,7 +36,7 @@ export const projectList = (ToDo) => {
 
 
     for (let i = 1; i < ToDo.getProjects().length; i++) {
-        list.appendChild(listProject(ToDo.getProjects()[i]));
+        list.appendChild(listProject(ToDo.getProjects()[i], main));
     }
     
     return list;
