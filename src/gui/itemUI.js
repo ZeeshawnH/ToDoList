@@ -29,7 +29,7 @@ export const listItem = (listItem) => {
     });
     const date = Object.assign(document.createElement("span"), {
         className: "date",
-        innerText: listItem.getDueDate()
+        innerText: listItem.displayDueDate()
     });
     info.appendChild(edit);
     info.appendChild(deleteButton)
@@ -47,7 +47,7 @@ export const listItem = (listItem) => {
     });
 
     deleteButton.addEventListener("click", () => {
-        item.parentNode.removeChild(item);
+        li.parentNode.removeChild(li);
     })
     
     li.appendChild(item);

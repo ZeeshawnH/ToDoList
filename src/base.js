@@ -1,44 +1,44 @@
 import './style.css';
-import { list, title } from './gui/listUI';
-import { listProject, projectList, today } from './gui/projectListUI';
-import { Project } from './Project/project';
+import {list, title} from './gui/listUI';
+import {listProject, projectList, today} from './gui/projectListUI';
+import {Project} from './Project/project';
 
 export const header = () => {
-    const header = document.createElement("header");
+  const header = document.createElement('header');
 
-    header.appendChild(Object.assign(document.createElement("div"), {
-        id: "title",
-        innerHTML: "To-Do"
-    }));
+  header.appendChild(Object.assign(document.createElement('div'), {
+    id: 'title',
+    innerHTML: 'To-Do',
+  }));
 
-    header.appendChild(Object.assign(document.createElement("div"), {
-        id: "date",
-        innerHTML: "7/18/2023"
-    }));
+  header.appendChild(Object.assign(document.createElement('div'), {
+    id: 'date',
+    innerHTML: '7/18/2023',
+  }));
 
-    return header;
+  return header;
 };
 
-export const sidebar = (ToDo, main) => {
-    const sidebar = Object.assign(document.createElement("nav"), {
-        id: "sidebar"
-    });
+export const sidebar = (ToDo, container) => {
+  const sidebar = Object.assign(document.createElement('nav'), {
+    id: 'sidebar',
+  });
 
-    sidebar.appendChild(today());
+  sidebar.appendChild(today(ToDo, container));
 
-    sidebar.appendChild(projectList(ToDo, main));
+  sidebar.appendChild(projectList(ToDo, container));
 
-    return sidebar;
+  return sidebar;
 };
 
-export const main = () => {
-    const main = Object.assign(document.createElement("main"), {
-        id: "main"
-    });
+export const main = (project, ToDo) => {
+  const main = Object.assign(document.createElement('main'), {
+    id: 'main',
+  });
 
-    main.appendChild(title("Today"));
+  main.appendChild(title(project.getName()));
 
-    main.appendChild(list(new Project("Today")));
+  main.appendChild(list(ToDo));
 
-    return main;
-}
+  return main;
+};

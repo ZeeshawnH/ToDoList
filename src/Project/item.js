@@ -48,11 +48,15 @@ export class Item {
      * Retrieves the month, day, and year values from the date-fns date and assembles a string from them
      * @returns the date in MM/DD/YYYY format from the due date value
      */
-    getDueDate() {
+    displayDueDate() {
         // day = getDate(this.dueDate);
         // month = getMonth(this.dueDate);
         // year = getYear(this.dueDate);
         return `${format(this.dueDate, 'MM/dd/yyyy')}`;
+    }
+
+    getDueDate() {
+        return this.dueDate;
     }
 
     /**

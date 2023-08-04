@@ -7,17 +7,17 @@ import { format, parse } from "date-fns";
  * Adds the element representing the new item button to the list
  * @returns html ul element representing the list of tasks
  */
-export const list = (project) => {
+export const list = (ToDo) => {
     const list = Object.assign(document.createElement("ul"), {
         className: "list"
     });
 
-    list.appendChild(listItem(new Item("Parent", "", new Date(2023, 2, 21), 2)));
+    // list.appendChild(listItem(new Item("Parent", "", new Date(2023, 7, 2), 2)));
 
-    list.appendChild(newItem());
+    list.appendChild(newItem(ToDo));
 
-    for (let i = 0; i < project.getItems(); i++) {
-        list.appendChild(listItem(project.getItems()[i]));
+    for (let i = 0; i < ToDo.getCurrentProject().getItems(); i++) {
+        list.appendChild(listItem(ToDo.getCurrentProject().getItems()[i]));
     }
 
     return list;
@@ -37,7 +37,8 @@ export const title = (text) => {
  * Clicking on it opens a form to add the new items
  * @returns the div element allowing the user to add a new task to the list
  */
-const newItem = () => {
+const newItem = (ToDo) => {
+    const li = document.createElement("li");
 
     const newItem = Object.assign(document.createElement("div"), {
         className: "item"
@@ -48,18 +49,20 @@ const newItem = () => {
     newItem.appendChild(container);
 
     // Add item form
-    const itemForm = form();
+    const itemForm = form(ToDo);
     itemForm.classList.toggle("hidden");
     newItem.appendChild(itemForm);
 
     // Event listener
     newItem.addEventListener("click", () => {
         newItem.classList.toggle("new");
-        container.classList.toggle("hidden");
-        itemForm.classList.toggle("hidden");
+        container.classList.add("hidden");
+        itemForm.classList.remove("hidden");
     });
+
+    li.appendChild(newItem);
     
-    return newItem;
+    return li;
 };
 
 /**
@@ -89,7 +92,7 @@ const addItem = () => {
  * Submit adds the new item to the list of items stored in local storage
  * @returns the form for creating a new item
  */
-const form = () => {
+const form = (ToDo) => {
     const form = Object.assign(document.createElement("form"), {
         className: "new-item-form",
     });
@@ -122,11 +125,16 @@ const form = () => {
     submit.addEventListener("click", (e) => {
         e.preventDefault();
 
+        let createdItem = new Item(titleField.value, details.value, parse(date.value, "yyyy-MM-dd", new Date()), 0);
+        ToDo.addItem(createdItem);
+
+        console.log(ToDo.getCurrentProject().getItems());
+
         const list = form.parentNode.parentNode;
         const addItem = form.parentNode;
-        list.appendChild(listItem(new Item(titleField.value, details.value, parse(date.value, "yyyy-MM-dd", new Date()), 0)));
+        list.appendChild(listItem(createdItem));
         list.removeChild(addItem);
-        list.appendChild(newItem());
+        list.appendChild(newItem(ToDo));
     });
     form.appendChild(submit);
 
@@ -134,11 +142,11 @@ const form = () => {
         className: "fas fa-trash-alt delete"
     });
     deleteButton.addEventListener("click", () => {
-        const list = form.parentNode.parentNode;
-        const addItem = form.parentNode;
+        const list = form.parentNode.parentNode.parentNode;
+        const addItem = form.parentNode.parentNode;
 
         list.removeChild(addItem);
-        list.appendChild(addItem);
+        list.appendChild(newItem());
     });
     form.appendChild(deleteButton);
 

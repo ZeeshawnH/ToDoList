@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { Project } from "./project";
 
 export class ToDo {
@@ -8,7 +9,12 @@ export class ToDo {
     constructor() {
         this.projects = [];
         this.projects.push(new Project("Today"));
+        this.currentProject = this.projects[0];
+
+
         this.projects.push(new Project("To-Do List"));
+
+        this.refreshToday();
     }
 
     /**
@@ -30,6 +36,46 @@ export class ToDo {
 
     getProjects() {
         return this.projects;
+    }
+
+
+    switchProject(projectName) {
+        console.log(this);
+        this.currentProject = this.findProject(projectName);
+        console.log(this);
+    }
+
+
+    getCurrentProject() {
+        return this.currentProject;
+    }
+
+
+
+    addItem(item) {
+        this.currentProject.addItem(item);
+        this.refreshToday();
+    }
+
+    
+    refreshToday() {
+        let today = this.findProject("Today");
+
+        // for (let i = 1; i < this.projects.length; i++) {
+        //     for (let j = 0; j < this.projects[i].getItems().length; i++) {
+        //         if (this.projects[i].getItems()[j].displayDueDate() === format(new Date(), 'MM/dd/yyyy')) {
+        //             today.addItem(this.projects[i].getItems()[j]);
+        //         }
+        //     }
+        // }
+
+        for (let i = 0; i < this.currentProject.getItems().length; i++) {
+            if (this.currentProject.getItems()[i].displayDueDate() === format(new Date(), 'MM/dd/yyyy')) {
+                today.addItem(this.currentProject.getItems()[i]);
+            }
+        }
+
+        console.log(this);
     }
 
 };

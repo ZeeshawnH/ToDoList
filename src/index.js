@@ -9,9 +9,9 @@ const content = Object.assign(document.createElement("div"), {
 
 document.body.appendChild(header());
 
-const mainContent = main();
+const mainContent = main(manager.findProject("Today"), manager);
 
-content.appendChild(sidebar(manager, mainContent));
+content.appendChild(sidebar(manager, content));
 
 content.appendChild(mainContent);
 
