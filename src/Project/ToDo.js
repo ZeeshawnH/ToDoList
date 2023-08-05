@@ -40,9 +40,9 @@ export class ToDo {
 
 
     switchProject(projectName) {
-        console.log(this);
+        // console.log(this);
         this.currentProject = this.findProject(projectName);
-        console.log(this);
+        // console.log(this);
     }
 
 

@@ -12,13 +12,13 @@ export const list = (ToDo) => {
         className: "list"
     });
 
-    // list.appendChild(listItem(new Item("Parent", "", new Date(2023, 7, 2), 2)));
-
-    list.appendChild(newItem(ToDo));
-
-    for (let i = 0; i < ToDo.getCurrentProject().getItems(); i++) {
+    console.log(ToDo.getCurrentProject().getItems());
+    for (let i = 0; i < ToDo.getCurrentProject().getItems().length; i++) {
+        console.log(ToDo.getCurrentProject().getItems()[i]);
         list.appendChild(listItem(ToDo.getCurrentProject().getItems()[i]));
     }
+
+    list.appendChild(newItem(ToDo));
 
     return list;
 }
